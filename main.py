@@ -18,9 +18,10 @@ def login(username,password,admin):
             
         else:
             print("User window")
+            messagebox.showinfo("Info", "Login Successfull")
             layout.destroy() 
             landing.user_login()
-            messagebox.showinfo("Info", "Login Successfull")
+           
 
                    
 
@@ -36,7 +37,7 @@ def main():
 
     InitializeTables()
 
-    layout = tk_layout()
+    layout = tk_layout("Library management system")
 
     # Title Decoration
     _title = Frame(layout,bg="white",bd=5)
@@ -66,7 +67,7 @@ def main():
 
 
     #login_btn
-    button = Button(LoginFrame, text='Login', width=25, command=lambda: login(username.get(),password.get(),_adminchk.state()),font=('Courier',14)).place(relx=0.5, rely=0.9, anchor=CENTER)
+    button = Button(LoginFrame, text='Login', width=25, command=lambda: login(username.get(),password.get(),_adminchk.state()),font=('Courier',14)).place(relx=0.5, rely=0.95, anchor=CENTER)
 
 
     layout.mainloop()

@@ -10,7 +10,7 @@ def dbconnector():
     dbcon = mysql.connector.connect (
     host ="127.0.0.1",
     user ="root",
-    password ="root",
+    password ="",
     database ="library"
     )
     return dbcon
@@ -33,10 +33,11 @@ def checkTableExists(dbcon, tablename):
 
 def InitializeTables():
     dbcon = dbconnector()
-    if not checkTableExists(dbcon,'Users'):
+    
+    if not 'users' in listTable():
         InitUserTable()
     
-    if not checkTableExists(dbcon,'books'):
+    if not 'books' in listTable():
         InitBookTable()
     
     print("Tables are already Initialized")    
@@ -48,8 +49,7 @@ def load_users():
     cursor = db.cursor()
     users = ['John','michel','mike','Tom','Goku','Gohan']
     for user in users:
-        sql_query = "INSERT into Users (LastName, Email, Password, Admin ) VALUES ( '" + user + "','" + user + "@example.com' , 'password', " + str(random.randint(0,1)) + ")" 
-        print(sql_query)
+        sql_query = "INSERT into users (LastName, Email, Password, Admin ) VALUES ( '" + user + "','" + user + "@example.com' , 'password', " + str(random.randint(0,1)) + ")" 
         cursor.execute(sql_query)
     db.commit()
 
@@ -58,7 +58,7 @@ def InitUserTable():
 
     db = dbconnector()
     cursor =  db.cursor()
-    users_tbl = "CREATE TABLE Users ( uid int NOT NULL AUTO_INCREMENT, LastName varchar(255) NOT NULL, FirstName varchar(255), Email varchar(255), Password varchar(255), Admin BIT, PRIMARY KEY (uid))"
+    users_tbl = "CREATE TABLE users ( uid int NOT NULL AUTO_INCREMENT, LastName varchar(255) NOT NULL, FirstName varchar(255), Email varchar(255), Password varchar(255), Admin BIT, PRIMARY KEY (uid))"
     cursor.execute(users_tbl)
     print("User Table Initialized")
     db.close()
@@ -203,10 +203,10 @@ def delete_book_db(bookID):
     db.close()
     return True
 
-def tk_layout():
+def tk_layout(title):
     master = Tk()
 
-    master.title("LMS")
+    master.title(title)
     master.geometry("800x600")
     
     return master

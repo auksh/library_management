@@ -2,7 +2,6 @@ from audioop import add
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
-from library_management.returnbook import tk_return
 from utils import *
 import views
 import search
@@ -17,7 +16,7 @@ def aaa():
 
 def admin_login():
 
-    layout = tk_layout()
+    layout = tk_layout("Home-Admin")
 
     _frame =  Frame(layout, bg="black",bd=5)
     _frame.place(relx=0.5, rely=0.5, relwidth=0.8, relheight=0.8,anchor=CENTER)
@@ -41,7 +40,7 @@ def admin_login():
 
 def user_login():
 
-    layout = tk_layout()
+    layout = tk_layout("Home-User")
 
     _frame =  Frame(layout, bg="black",bd=5)
     _frame.place(relx=0.5, rely=0.5, relwidth=0.8, relheight=0.8,anchor=CENTER)

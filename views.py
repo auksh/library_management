@@ -15,21 +15,21 @@ def view_table(_choice):
     elif _choice == 'Issued':
         search_query = "SELECT * FROM books WHERE issued_to IS NOT NULL"
 
-    tableFrame = Frame(layout,bg='white')
+    tableFrame = Frame(layout)
     tableFrame.place(relx=0.1,rely=0.25,relwidth=0.8,relheight=0.5)
-    e=Label(tableFrame,width=10,text='Id',borderwidth=2, relief='ridge',anchor='w',bg='black')
+    e=Label(tableFrame,width=10,text='Id',borderwidth=2, relief='ridge',anchor='w')
     e.grid(row=0,column=0)
-    e=Label(tableFrame,width=10,text='Title',borderwidth=2, relief='ridge',anchor='w',bg='black')
+    e=Label(tableFrame,width=10,text='Title',borderwidth=2, relief='ridge',anchor='w')
     e.grid(row=0,column=1)
-    e=Label(tableFrame,width=10,text='Author',borderwidth=2, relief='ridge',anchor='w',bg='black')
+    e=Label(tableFrame,width=10,text='Author',borderwidth=2, relief='ridge',anchor='w')
     e.grid(row=0,column=2)
-    e=Label(tableFrame,width=10,text='ISBN',borderwidth=2, relief='ridge',anchor='w',bg='black')
+    e=Label(tableFrame,width=10,text='ISBN',borderwidth=2, relief='ridge',anchor='w')
     e.grid(row=0,column=3)
-    e=Label(tableFrame,width=10,text='Publication',borderwidth=2, relief='ridge',anchor='w',bg='black')
+    e=Label(tableFrame,width=10,text='Publication',borderwidth=2, relief='ridge',anchor='w')
     e.grid(row=0,column=4)
-    e=Label(tableFrame,width=10,text='Status',borderwidth=2, relief='ridge',anchor='w',bg='black')
+    e=Label(tableFrame,width=10,text='Status',borderwidth=2, relief='ridge',anchor='w')
     e.grid(row=0,column=5)
-    e=Label(tableFrame,width=10,text='Issued_to Email',borderwidth=2, relief='ridge',anchor='w',bg='black')
+    e=Label(tableFrame,width=10,text='Issued_to ',borderwidth=2, relief='ridge',anchor='w')
     e.grid(row=0,column=6)
 
     db = utils.dbconnector()
@@ -37,15 +37,13 @@ def view_table(_choice):
     
     cursor.execute(search_query)
     i = 1
+
     for book in cursor:
         for j in range(len(book)):
-            e = Label(tableFrame, width=10, text=book[j],bg="black")
+            e = Label(tableFrame, width=15, text=book[j])
             e.grid(row=i, column=j)
             
         i = i +1 
-
-
-    
     
 
     return
@@ -54,7 +52,7 @@ def tk_view():
     
     global layout
 
-    layout = utils.tk_layout()
+    layout = utils.tk_layout("View Books")
 
     _frame =  Frame(layout, bg="black",bd=5)
     _frame.place(relx=0.5, rely=0.1, relwidth=0.8, relheight=0.1,anchor=N)
